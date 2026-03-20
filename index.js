@@ -38,7 +38,7 @@ const startServer = async () => {
     console.log("Database connected")
 
     app.listen(4000, () => {
-      console.log("Server running on https://railway-backend-production-a56b.up.railway.app/")
+      console.log("Server running on http://localhost:4000")
     })
   } catch (error) {
     console.log("DB connection failed", error)
