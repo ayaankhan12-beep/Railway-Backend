@@ -54,12 +54,11 @@ await user.save()
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-const isProduction = process.env.NODE_ENV === "production";
 
 res.cookie("token", token, {
   httpOnly: true,
-  secure: isProduction,          // HTTPS required in production
-  sameSite: isProduction ? "none" : "lax",  // cross-site cookie
+  secure: process.env.NODE_ENV === "production" ,          // HTTPS required in production
+  sameSite: process.env.NODE_ENV === "production"  ? "none" : "lax",  // cross-site cookie
   maxAge: 1 * 24 * 60 * 60 * 1000       // 1 day
 });
 
@@ -122,7 +121,6 @@ const login = async(req , res) => {
         }
 
 
-        const isProduction = process.env.NODE_ENV === "production";
 
         const token = jwt.sign({id: user._id, role:user.role} , process.env.JWT_SECRET , {expiresIn: "1d"} )
 
@@ -131,8 +129,8 @@ const login = async(req , res) => {
 res.cookie("token", token, {
   
   httpOnly: true,
-  secure: isProduction,          
-  sameSite: "none" ? "none"  : "lax", 
+  secure: process.env.NODE_ENV === "production" ,          
+  sameSite: process.env.NODE_ENV === "production" ? "none"  : "lax", 
   maxAge: 1 * 24 * 60 * 60 * 1000,        // 30 days
 });
 
