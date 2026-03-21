@@ -10,7 +10,7 @@ const signUp = async (req, res) => {
   try {
     const { username, email, password  } = req.body;
 
-    
+    console.log("req.body:" , req.body)
     if (!username || !email || !password) {
       return res.status(400).json({
         isSuccessful: false,
@@ -64,7 +64,7 @@ res.cookie("token", token, {
 
     
     await transporter.sendMail({
-      from:"SignUp message",
+      from:`"SignUp message" <${process.env.EMAIL_USER}>`,
       to: email,
       subject:"Your OTP code",
       text:`Your OTP is ${Otp}`
