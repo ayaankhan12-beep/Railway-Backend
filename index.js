@@ -2,7 +2,7 @@ require("dotenv").config()
 const express = require("express")
 const app = express()
 
-const connect = require("./cnfig/db")
+const connecting = require("./cnfig/db")
 const cors = require("cors")
 const AuthRouter = require("./routes/routes.js")
 const TicketRouter = require("./routes/ticketsbookingroutes.js")
@@ -34,8 +34,8 @@ app.use("/api" , AddtrainRouter)
 // DB connect 
 const startServer = async () => {
   try {
-    await connect()
-    console.log("Database connected")
+    
+  await connecting()
 
     app.listen(4000, () => {
       console.log("Server running on http://localhost:4000")
