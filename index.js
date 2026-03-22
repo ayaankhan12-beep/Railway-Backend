@@ -13,7 +13,7 @@ const AddtrainRouter = require("./routes/Addtrainrouter.js")
 
 app.use(express.json())
 app.use(cors({
-  origin: "https://railway-system-xx.vercel.app", // frontend url
+  origin: "https://railway-system-xx.vercel.app/", // frontend url
   credentials: true
 
 }
@@ -41,7 +41,7 @@ const startServer = async () => {
       console.log("Server running on http://localhost:4000")
     })
   } catch (error) {
-    console.log("DB connection failed", error)
+  console.log("server error:" , error)
   }
 }
 

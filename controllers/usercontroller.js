@@ -264,7 +264,7 @@ const resend = async (req , res) => {
 
   transporter.sendMail({
     from:"SignUp message",
-      to: user.email,
+      to: email,
       subject:"Resend OTP code",
       text:`Your OTP is ${Otp}`
   })
