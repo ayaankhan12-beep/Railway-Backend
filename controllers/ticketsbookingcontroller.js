@@ -9,7 +9,7 @@
 const ticketsmodel = require("../models/ticketsmodel");
 const cloudinary = require("../cnfig/cloudinary");
 const transporter = require("../cnfig/mailer");
-const pdfgenerate = require("../cnfig/pdfgenerate");
+// const pdfgenerate = require("../cnfig/pdfgenerate");
 const AddtrainModel = require("../models/Addtrainmodel");
 const uploadTocloud = require("../middleware/upload");
 
@@ -68,8 +68,7 @@ const booking = async (req, res) => {
       train: trainId,
     });
 
-    // ✅ Generate PDF
-    const pdfBuffer = await pdfgenerate(ticket , train)
+    // const pdfBuffer = await pdfgenerate(ticket , train)
   
        
     

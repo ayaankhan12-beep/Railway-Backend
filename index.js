@@ -12,6 +12,7 @@ const AddtrainRouter = require("./routes/Addtrainrouter.js")
 
 
 app.use(express.json())
+express.urlencoded({extended: true})
 app.use(cors({
   origin: "https://railway-system-xx.vercel.app", // frontend url
   credentials: true
