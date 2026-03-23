@@ -6,7 +6,7 @@
 
 
 
-const TicketModel = require("../models/ticketsmodel");
+const ticketsmodel = require("../models/ticketsmodel");
 const cloudinary = require("../cnfig/cloudinary");
 const transporter = require("../cnfig/mailer");
 const pdfgenerate = require("../cnfig/pdfgenerate");
@@ -18,7 +18,6 @@ const booking = async (req, res) => {
     const {trainId} = req.params
     const { name, cnic, Age, email } = req.body;
 
-    // ✅ Required fields check
     if (!name || !cnic || !Age || !email) {
       return res.status(400).json({
         isSuccessful: false,
@@ -26,7 +25,6 @@ const booking = async (req, res) => {
       });
     }
 
-    // ✅ Image check
     if (!req.file) {
       return res.status(400).json({
         isSuccessful: false,
@@ -35,7 +33,7 @@ const booking = async (req, res) => {
     }
 
     // ✅ CNIC duplicate check
-    const existing = await TicketModel.findOne({ cnic });
+    const existing = await ticketsmodel.findOne({ cnic });
     if (existing) {
       return res.status(409).json({
         isSuccessful: false,
@@ -61,7 +59,7 @@ const booking = async (req, res) => {
 
 
   
-    const ticket = await TicketModel.create({
+    const ticket = await ticketsmodel.create({
       name,
       cnic,
       Age,

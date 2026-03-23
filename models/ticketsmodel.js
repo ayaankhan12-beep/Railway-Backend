@@ -10,7 +10,8 @@ const TicketSchema = new mongoose.Schema(
    
    cnic:{
     type:String,
-    require: true
+    require: true,
+    unique: true
    } ,
 
    Age: {
