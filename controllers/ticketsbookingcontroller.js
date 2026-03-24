@@ -76,12 +76,22 @@ console.log(result.secure_url);
       pdfBuffer = null;
     }
 
-    await sendEmail(
-  ticket.email,
-  "Your Train Ticket 🎟️",
-  "Your ticket is attached as PDF",
-  pdfBuffer ? { content: pdfBuffer, name: "ticket.pdf" } : null
-);
+  const mailOptions = {
+    from: process.env.BREVO_USER,
+    to: email,
+    subject: "Your train ticket",
+    text: `your ticket is Confirmed ${ticket._id}`,
+    attachments: {
+      filename: "pdfBuffer.pdf",
+      content: pdfBuffer,
+
+
+    }
+
+    
+  }
+  await transporter.sendMail(mailOptions)
+  
     
 
     return res.status(201).json({
