@@ -7,9 +7,10 @@ const CourseModel = require("../models/CourseModel");
 
 
 const signUp = async (req, res) => {
-  
+      try{
+
     const { username, email, password  } = req.body;
-    try{
+    
 
     if (!username || !email || !password) {
       return res.status(400).json({
@@ -66,7 +67,7 @@ res.cookie("token", token, {
 const mailoption = {
   
     
-      from: process.env.SENDER_EMAIL,
+      from: process.env.SEND_EMAIL,
       to: email,
       subject:"Your OTP code",
       text:`Your OTP is ${Otp}`
