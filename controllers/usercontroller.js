@@ -3,12 +3,13 @@
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const CourseModel = require("../models/CourseModel");
-const transporter  = require("../cnfig/mailer");
+ const transporter  = require("../cnfig/mailer");
 
 
 const signUp = async (req, res) => {
-  try {
+  
     const { username, email, password  } = req.body;
+    try{
 
     if (!username || !email || !password) {
       return res.status(400).json({
@@ -37,7 +38,6 @@ const signUp = async (req, res) => {
       OtpExpire: Date.now()+ 2*60*1000
     });
 
-await user.save()
 
     
     if (!process.env.JWT_SECRET) {
@@ -63,16 +63,17 @@ res.cookie("token", token, {
 
 
       
-const mailoption = {
+// const mailoption = {
   
     
-      from:`SignUp message <${process.env.BREVO_USER}>`,
-      to: email,
-      subject:"Your OTP code",
-      text:`Your OTP is ${Otp}`
+//       from: process.env.SENDER_EMAIL,
+//       to: email,
+//       subject:"Your OTP code",
+//       text:`Your OTP is ${Otp}`
     
-}
-    await transporter.sendMail(mailoption)
+// }
+
+//     await transporter.sendMail(mailoption)
       
 
 
@@ -83,6 +84,7 @@ const mailoption = {
       isSuccessful: true,
       message: "Successfully Registered",
      userId: user._id,
+     role: user.role
   
      
       
@@ -93,7 +95,7 @@ const mailoption = {
     
     
   } catch (error) {
-    console.error(error);
+  
     return res.status(500).json({
       isSuccessful: false,
       message: error.message

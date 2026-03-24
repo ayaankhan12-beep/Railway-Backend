@@ -8,6 +8,7 @@ const AuthRouter = require("./routes/routes.js")
 const TicketRouter = require("./routes/ticketsbookingroutes.js")
 const cookieparser = require("cookie-parser")
 const AddtrainRouter = require("./routes/Addtrainrouter.js")
+const mailer = require("./cnfig/mailer.js")
 
 
 

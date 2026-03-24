@@ -10,7 +10,7 @@ const CourseSchema = new mongoose.Schema(
     password: {
       type: String,
       required: true,
-      unique:true
+      
     },
   
   email: {
