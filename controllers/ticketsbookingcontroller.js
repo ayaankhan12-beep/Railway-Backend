@@ -12,7 +12,7 @@
 
 const ticketsmodel = require("../models/ticketsmodel");
 const cloudinary = require("../cnfig/cloudinary");
-const transporter = require("../cnfig/mailer");
+// const transporter = require("../cnfig/mailer");
 const generatepdf = require("../cnfig/pdfgenerate");
 const AddtrainModel = require("../models/Addtrainmodel");
 const uploadTocloud = require("../middleware/upload");
@@ -95,14 +95,6 @@ console.log(result.secure_url);
 
 
   
-    setImmediate(async () => {
-      try {
-        const pdfBuffer = await generatepdf(ticket, train);
-        await sendEmail(ticket.email, pdfBuffer);
-      } catch (err) {
-        console.log("Background error:", err.message);
-      }
-    });
     
 
     return res.status(201).json({
