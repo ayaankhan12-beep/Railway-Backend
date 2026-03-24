@@ -76,27 +76,13 @@ console.log(result.secure_url);
       pdfBuffer = null;
     }
 
-    // Send email
-    try {
-      await transporter.sendMail({
-        from: `"Railway Ticket" <${process.env.SENDER_EMAIL}>`,
-        to: email,
-        subject: "Your Train Ticket 🎟️",
-        text: "Your ticket is attached as PDF",
-        attachments: pdfBuffer
-          ? [
-              {
-                filename: "ticket.pdf",
-                content: pdfBuffer,
-                contentType: "application/pdf",
-              },
-            ]
-          : [],
-      });
-
-    } catch (err) {
-      console.log("Email Error:", err.message);
-    }
+    await sendEmail(
+  ticket.email,
+  "Your Train Ticket 🎟️",
+  "Your ticket is attached as PDF",
+  pdfBuffer ? { content: pdfBuffer, name: "ticket.pdf" } : null
+);
+    
 
     return res.status(201).json({
       isSuccessful: true,
