@@ -77,7 +77,7 @@ console.log(result.secure_url);
     }
 
   const mailOptions = {
-    from: process.env.SENDER_EMAIL,
+    from: process.env.SEND_EMAIL,
     to: email,
     subject: "Your train ticket",
     text: `your ticket is Confirmed ${ticket._id}`,
